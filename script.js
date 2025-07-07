@@ -9,7 +9,7 @@ const confettiCanvas = document.getElementById('confetti-canvas');
 
 // Placeholder images (replace with your own if desired)
 const JERRY_CAN_IMG = "img/water-can-transparent.png"; // yellow jerry can
-const ROCK_IMG = "img/water-can.png"; // gray rock
+const BRICK_EMOJI = "🧱"; // distinctive brick emoji
 
 // Winning and losing message
 const WIN_MSGS = [
@@ -75,17 +75,18 @@ function spawnItems() {
   const randomIdx = Math.floor(Math.random() * totalCells);
   const cell = grid.children[randomIdx];
 
-  // Randomly choose between good jerry can (70% chance) or bad rock (30% chance)
-  const isGood = Math.random() < 0.7;
-  
+  // Randomly choose between good jerry can (80% chance) or brick (20% chance)
+  const isGood = Math.random() < 0.8;
+
   if (isGood) {
     cell.innerHTML = `<img src="${JERRY_CAN_IMG}" alt="Jerry Can" class="can-img" draggable="false">`;
     cell.dataset.type = 'good';
   } else {
-    cell.innerHTML = `<img src="${ROCK_IMG}" alt="Rock" class="can-img" draggable="false">`;
+    cell.innerHTML = `<span class="brick-emoji" role="img" aria-label="brick">${BRICK_EMOJI}</span>`;
     cell.dataset.type = 'bad';
   }
 }
+
 
 // --- Feedback effect (+1/-1) ---
 function showFeedback(cell, val) {
@@ -142,13 +143,13 @@ function startGame() {
   resetBtn.style.display = '';
   spawnItems();
   
-  // Spawn new items at random intervals between 1000-2000ms (whack-a-mole style)
+  // Spawn new items at random intervals between 400-800ms (faster whack-a-mole style)
   function nextSpawn() {
     if (!gameActive) return;
     spawnItems();
-    spawnInterval = setTimeout(nextSpawn, 1000 + Math.random() * 1000);
+    spawnInterval = setTimeout(nextSpawn, 800 + Math.random() * 800);
   }
-  spawnInterval = setTimeout(nextSpawn, 1500);
+  spawnInterval = setTimeout(nextSpawn, 700);
   // Timer countdown
   timerInterval = setInterval(() => {
     timer--;
