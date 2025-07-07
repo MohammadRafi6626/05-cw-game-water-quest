@@ -1,22 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Water Quest</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>Water Quest</h1>
-    <p class="game-instructions">Collect 20 items to complete the game!</p>
-    <div class="stats">
-      <p>Cans Collected: <span id="current-cans">0</span></p>
-      <p>Time Left: <span id="timer">30</span>s</p>
+    <div class="header">
+      <!-- Placeholder logo, replace src with actual logo if available -->
+      <img src="img/cw_logo.png" alt="charity: water logo">
+      <h1>Water Quest</h1>
     </div>
-    <div id="achievements" class="achievement"></div>
-    <div class="game-grid"></div>
-    <button id="start-game">Start Game</button>
+    <div class="game-instructions">
+      Tap the yellow jerry cans to collect water! Avoid the rocks.<br>
+      Score 20+ in 30 seconds to win.
+    </div>
+    <div class="stats">
+      <span>Score: <span class="score" id="score">0</span></span>
+      <span>Time: <span class="timer" id="timer">30</span>s</span>
+    </div>
+    <div id="end-message"></div>
+    <div class="game-grid" id="game-grid"></div>
+    <div style="text-align:center; margin-top:18px;">
+      <button class="start-btn" id="start-btn">Start Game</button>
+      <button class="reset-btn" id="reset-btn" style="display:none;">Reset</button>
+    </div>
+    <canvas class="confetti" id="confetti-canvas" style="display:none;"></canvas>
+    <div class="footer">
+      <img src="img/cw_logo_horizontal.png" alt="charity: water logo">
+      <span>Inspired by charity: water</span>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
